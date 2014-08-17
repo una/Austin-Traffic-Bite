@@ -26,7 +26,7 @@ function NBIH35 () {
 	    unitSystem: google.maps.UnitSystem.IMPERIAL,
 	    durationInTraffic: true
 	  }, function (response, status) {
-	  	console.log(response.rows[0].elements[1]);
+	  	console.log('nb ',response);
 	  	//good 11 mins
 	  	// value 637 seconds
 	  	var duration = response.rows[0].elements[1].duration.value;
@@ -51,7 +51,7 @@ function SBIH35 () {
 	    unitSystem: google.maps.UnitSystem.IMPERIAL,
 	    durationInTraffic: true
 	  }, function (response, status) {
-	  	console.log(response.rows[0].elements[1]);
+	  	console.log('sb ',response);
 	  	//good 11 mins
 	  });
 }
