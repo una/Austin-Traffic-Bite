@@ -4,28 +4,72 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
       html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
+      body { 
+      	height: 100%; 
+      	margin: 0; 
+      	padding: 0; 
+      	font-family: 'Helvetica Neue', helvetica, sans-serif;
+		background-color: #FFF;
+		color: #333;
+      }
+
+      .container {
+      	position: relative;
+      	margin: 0 auto;
+      	max-width: 960px;
+      	height: 100%;
+      	width: 100%;
+      }
+
+      .center {
+      	text-align: center;
+      }
+
+      .circle {
+      	height: 300px;
+      	width: 300px;
+      	border-radius: 50%;
+      	background-color: #EEE;
+      	margin: 0 auto;
+      }
+
+      .row {
+      	position: relative;
+      	width: 100%;
+      }
+
+      .col-1-2 {
+      	float: left;
+      	width: 49.999%
+      }
+
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=">
     </script>
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(30.2500, -97.750),
-          zoom: 13
-        };
-        window.map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+
   </head>
   <body>
-    <div id="map-canvas"/>
+	<div class="container">
+		<h1 class="center">IH-35 Traffic</h1>
+		<div class="row">
+			<div class="col-1-2">
+				<h2 class="center">South Bound</h2>
+				<div class="circle"></div>
+			</div>	
+			<div class="col-1-2">
+				<h2 class="center">North Bound</h2>
+				<div class="circle"></div>
+			</div>	
+		</div>
+	</div>
 
     <script>
+var colors {
+	"red": "#EF4836",
+	"green": "#68C3A3",
+	"orange": "#FDE3A7"
+}
 var service = new google.maps.DistanceMatrixService();
 function NBIH35 () {
 
