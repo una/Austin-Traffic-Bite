@@ -1,57 +1,47 @@
-var colors = {
-	"red": "#EF4836",
-	"green": "#68C3A3",
-	"orange": "#FDE3A7"
-}
-var service = new google.maps.DistanceMatrixService();
-google.maps.event.addDomListener(window, 'load', function () {
-	NBIH35();
-	SBIH35();
-});
+(function ($) {
 
+	$(document).ready(function () {
+		var tt = new TrafficTracker();
+		tt.start();
+	});
 
-function NBIH35 () {
+	function TrafficTracker () {}
 
-    var origin1 = new google.maps.LatLng(30.2174376,-97.7498557);
-	var origin2 = "Austin, Texas";
+	TrafficTracker.prototype = {
+		nbEl: $('#nb-circle'),
+		sbEl: $('#nb-circle'),
+		colors: {
+			"red": "#EF4836",
+			"green": "#68C3A3",
+			"orange": "#FDE3A7"
+		},
+		start: function () {
+			//if IH-35
+			this.NBIH35();
+			this.SBIH35();
+		},
+		getTravelData: function (startSet, endSet) {
+			var s = startSet.join(","),
+				e = endSet.join(",");
+			return $.ajax({
+				type: 'GET',
+				dataType: 'JSON',
+				url: 'http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluur25utnq%2Cb0%3Do5-9w70lf&from='+s+'&to='+e+'&callback=&timeType=1&useTraffic=true'
+			});
+		},
+		NBIH35: function () {
+			this.getTravelData([30.2174376,-97.7498557], [30.3388355,-97.700168]).done(function(data) {
+				console.log('nb ', data);
+				//realtime: no traffic 570
+			});
+		},
+		SBIH35: function () {
+			this.getTravelData([30.338827,-97.700487],[30.217247,-97.751079]).done(function (data) {
+				console.log('sb ',data);
+				//realtime: no traffic 530
+			});
+		}
 
-	var destinationA = "Austin, Texas";
-	var destinationB = new google.maps.LatLng(30.3388355,-97.700168);
+	};
 
-	service.getDistanceMatrix(
-	  {
-	    origins: [origin1, origin2],
-	    destinations: [destinationA, destinationB],
-	    travelMode: google.maps.TravelMode.DRIVING,
-	    unitSystem: google.maps.UnitSystem.IMPERIAL,
-	    durationInTraffic: true
-	  }, function (response, status) {
-	  	console.log('nb ',response);
-	  	//good 11 mins
-	  	// value 637 seconds
-	  	var duration = response.rows[0].elements[1].duration.value;
-	  	console.log(duration);
-	  });
-}
-
-
-function SBIH35 () {
-
-    var origin1 = new google.maps.LatLng(30.338827, -97.700487);
-	var origin2 = "Austin, Texas";
-
-	var destinationA = "Austin, Texas";
-	var destinationB = new google.maps.LatLng(30.217247, -97.751079);
-
-	service.getDistanceMatrix(
-	  {
-	    origins: [origin1, origin2],
-	    destinations: [destinationA, destinationB],
-	    travelMode: google.maps.TravelMode.DRIVING,
-	    unitSystem: google.maps.UnitSystem.IMPERIAL,
-	    durationInTraffic: true
-	  }, function (response, status) {
-	  	console.log('sb ',response);
-	  	//good 11 mins
-	  });
-}
+})(jQuery);
