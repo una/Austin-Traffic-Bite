@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui=yes">
-    <meta name="description" content="Austin Texas traffic report.">
-    <meta name="keywords" content="Austin Texas traffic, i 35, mopac" />
+    <meta name="description" content="Austin Texas real time traffic report.">
+    <meta name="keywords" content="Austin Texas traffic, i 35, mopac, real time traffic" />
     <meta name="robots" content="index, follow">
     
     <title>Austin Texas Traffic</title>
@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-	<div class="container">
+  	<header id="header" class="header">
+		<a href="#/mopac"> check mopac</a>
 		<h1 class="center">IH-35 Traffic</h1>
+  	</header>
+	<div class="container">
 		<div class="row">
 			<div class="col-1-2">
 				<h2 class="center">South Bound</h2>
@@ -26,8 +29,11 @@
 			</div>	
 		</div>
 	</div>
+	<footer class="footer">
+	</footer>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/routely.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

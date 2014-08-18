@@ -8,6 +8,14 @@ body {
     color: #333;
 }
 
+h1, h2, h3 {
+    font-weight: 500;
+}
+
+.header {
+    padding: 5px;
+}
+
 .container {
     position: relative;
     margin: 0 auto;
@@ -21,11 +29,19 @@ body {
 }
 
 .circle {
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
     border-radius: 50%;
     background-color: #EEE;
+    color: #333;
     margin: 0 auto;
+    text-align: center;
+}
+
+.circle-text {
+    position: relative;
+    top: 38%;
+    font-size: 34px;
 }
 
 .row {
