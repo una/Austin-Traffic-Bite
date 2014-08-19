@@ -59,26 +59,32 @@
 				url: 'http://www.mapquestapi.com/directions/v2/route?key=Fmjtd%7Cluur25utnq%2Cb0%3Do5-9w70lf&from='+s+'&to='+e+'&callback=&timeType=1&useTraffic=true'
 			});
 		},
-		displayTravelResults: function (data, jqEl) {
+		/**
+		*	displayTravelResults
+		*	@param	<json>	data
+		*	@param  <integer> expTime - expected travel time in no traffic
+		*	@param  <jquery el> jqEl - element to display results
+		*/
+		displayTravelResults: function (data, expTime, jqEl) {
 			var rand = Math.floor(Math.random() * this.phrasesCount),
 				textEl = $("<span class='circle-text'>"),
 				min = 60,
 				realtime = data.route.realTime,
-				time = data.route.time;
+				time = expTime;
 
-			if (realtime < time + min) 
+			if (realtime < time + 0.5*min) 
 			{
 				textEl.text(this.phrases.positive[rand])
 				jqEl.css('background-color', this.colors.green)
 					.html(textEl);
 			} 
-			else if (realtime >= time + min && realtime <= time + 3*min) 
+			else if (realtime >= time + 0.5*min && realtime <= time + 2*min) 
 			{
 				textEl.text(this.phrases.neutral[rand]);
 				jqEl.css('background-color', this.colors.orange)
 					.html(textEl);
 			} 
-			else if (realtime > time + 3*min) 
+			else if (realtime > time + 2*min) 
 			{
 				textEl.text(this.phrases.negative[rand]);
 				jqEl.css('background-color', this.colors.red)
@@ -99,28 +105,35 @@
 			var self = this;
 			this.getTravelData([30.2174376,-97.7498557], [30.3388355,-97.700168]).done(function (data) {
 				console.log('nb 35 ', data.route);
-				self.displayTravelResults(data, self.nbEl);
+				self.displayTravelResults(data, 700, self.nbEl);
+
+				//heavy traffic 855
 			});
 		},
 		SBIH35: function () {
 			var self = this;
 			this.getTravelData([30.338827,-97.700487],[30.217247,-97.751079]).done(function (data) {
 				console.log('sb 35 ',data.route);
-				self.displayTravelResults(data, self.sbEl);
+				self.displayTravelResults(data, 700, self.sbEl);
+				// heavy traffic 794
 			});
 		},
 		NBMopac: function () {
 			var self = this;
 			this.getTravelData([30.257323,-97.799138],[30.374919,-97.739824]).done(function (data) {
 				console.log('nb mopac ',data.route);
-				self.displayTravelResults(data, self.nbEl);
+				self.displayTravelResults(data, 720, self.nbEl);
+
+				//heavy traffic 1344
 			});
 		},
 		SBMopac: function () {
 			var self = this;
 			this.getTravelData([30.374041,-97.740324],[30.242744,-97.811671]).done(function (data) {
 				console.log('sb mopac ',data.route);
-				self.displayTravelResults(data, self.sbEl);
+				self.displayTravelResults(data, 720, self.sbEl);
+
+				//heavy traffic 1398
 			});
 		}
 	};
