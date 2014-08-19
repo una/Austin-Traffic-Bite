@@ -112,7 +112,7 @@
 		NBMopac: function () {
 			var self = this;
 			this.getTravelData([30.257323,-97.799138],[30.374919,-97.739824]).done(function (data) {
-				console.log('nb mopac ',data.route.);
+				console.log('nb mopac ',data.route);
 				self.displayTravelResults(data, self.nbEl);
 			});
 		},
