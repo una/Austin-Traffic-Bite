@@ -53,3 +53,20 @@ h1, h2, h3 {
     float: left;
     width: 49.999%
 }
+
+/* Tablet */
+@media (max-width: 705px) {
+    .col-1-2 {
+        float: none;
+        margin: 0 auto;
+        width: 100%
+    }
+}
+
+/* Iphones */
+@media (max-width: 350px) {
+    .circle {
+        height: 245px;
+        width: 245px;
+    }
+}
