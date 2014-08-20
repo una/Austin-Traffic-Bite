@@ -107,22 +107,22 @@
 				console.log('nb 35 ', data.route);
 				self.displayTravelResults(data, 700, self.nbEl);
 
-				//heavy traffic 855
+				//heavy traffic 800
 			});
 		},
 		SBIH35: function () {
 			var self = this;
 			this.getTravelData([30.338827,-97.700487],[30.217247,-97.751079]).done(function (data) {
 				console.log('sb 35 ',data.route);
-				self.displayTravelResults(data, 700, self.sbEl);
-				// heavy traffic 794
+				self.displayTravelResults(data, 600, self.sbEl);
+				// heavy traffic 778 ~13 min
 			});
 		},
 		NBMopac: function () {
 			var self = this;
 			this.getTravelData([30.257323,-97.799138],[30.374919,-97.739824]).done(function (data) {
 				console.log('nb mopac ',data.route);
-				self.displayTravelResults(data, 720, self.nbEl);
+				self.displayTravelResults(data, 756, self.nbEl);
 
 				//heavy traffic 1344
 			});
@@ -131,7 +131,7 @@
 			var self = this;
 			this.getTravelData([30.374041,-97.740324],[30.242744,-97.811671]).done(function (data) {
 				console.log('sb mopac ',data.route);
-				self.displayTravelResults(data, 720, self.sbEl);
+				self.displayTravelResults(data, 830, self.sbEl);
 
 				//heavy traffic 1398
 			});
