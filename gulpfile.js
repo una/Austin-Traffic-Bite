@@ -1,12 +1,21 @@
-var gulp = require('gulp')
-var cssmin = require('gulp-cssmin')
-var concat = require('gulp-concat')
-var uglify = require('gulp-uglify')
+var gulp = require('gulp'),
+	sass = require('gulp-ruby-sass'),
+	autoprefixer = require('gulp-autoprefixer'),
+	cssmin = require('gulp-cssmin'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify');
+
+gulp.task('styles', function() {
+  return gulp.src('_scss/*.scss')
+    .pipe(sass({ style: 'expanded' }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+    .pipe(gulp.dest('./css'));
+});
 
 gulp.task('cssmin', function () {
-	return gulp.src(['./css/*.css', '!.css/main.min.css'])
+	return gulp.src(['./css/*.css', '!.css/style.min.css'])
 		.pipe(cssmin())
-		.pipe(concat('./main.min.css'))
+		.pipe(concat('./style.min.css'))
 		.pipe(gulp.dest('./css'));
 });
 
@@ -18,4 +27,10 @@ gulp.task('uglify', function () {
 		.pipe(gulp.dest('./js'));
 });
 
-gulp.task('default', ['cssmin', 'uglify']);
+gulp.task('watch', function() {
+  gulp.watch('_scss/*.scss', ['styles']);
+	});
+	gulp.task('default', ['express', 'watch'], function() {
+});
+
+gulp.task('default', ['styles', 'watch', 'cssmin', 'uglify']);
